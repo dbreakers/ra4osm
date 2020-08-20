@@ -233,12 +233,12 @@ getEventSSData(event): Observable<any> {
 
   getEventsSSData(): Observable<any> {
     if (!this.slowhttp) {
-      let singleObservables = (this.globals.sectiondata[3].items.map(event =>
+      let singleObservables = (this.globals.sectiondata[0].items.map(event =>
         this.getEventSSData(event.eventid))
               );
       return forkJoin(singleObservables);
     } else {
-let singleObservables = this.globals.sectiondata[3].items.map(event =>
+let singleObservables = this.globals.sectiondata[0].items.map(event =>
         this.getEventSSData2(event.eventid)
       );
       
@@ -289,12 +289,12 @@ let singleObservables = this.globals.sectiondata[3].items.map(event =>
 
   getEventsSData(): Observable<any> {
     if (!this.slowhttp) {
-      let singleObservables = (this.globals.sectiondata[3].items.map(event =>
+      let singleObservables = (this.globals.sectiondata[0].items.map(event =>
         this.getEventSData(event.eventid))
               );
       return forkJoin(singleObservables);
     } else {
-let singleObservables = this.globals.sectiondata[3].items.map(event =>
+let singleObservables = this.globals.sectiondata[0].items.map(event =>
         this.getEventSData2(event.eventid)
       );
       
@@ -348,12 +348,12 @@ let singleObservables = this.globals.sectiondata[3].items.map(event =>
 
   getEventsAData(): Observable<any> {
     if (!this.slowhttp) {
-      let singleObservables = this.globals.sectiondata[3].items.map(event =>
+      let singleObservables = this.globals.sectiondata[0].items.map(event =>
         this.getEventAData(event.eventid)
       );
       return forkJoin(singleObservables);
     } else {
-      let singleObservables = this.globals.sectiondata[3].items.map(event =>
+      let singleObservables = this.globals.sectiondata[0].items.map(event =>
         this.getEventAData2(event.eventid)
       );
       return from(singleObservables)
