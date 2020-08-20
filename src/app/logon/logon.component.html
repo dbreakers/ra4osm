@@ -1,0 +1,49 @@
+<ons-toolbar>
+	<div class="center">
+		{{globals.application}}
+	</div>
+	<div class="right menu_sel">
+		<ons-toolbar-button (click)="openMenu()">
+			<ons-icon icon="fa-bars"></ons-icon>
+		</ons-toolbar-button>
+	</div>
+</ons-toolbar>
+<div class="content">
+	<h2>Welcome</h2>
+	<div style="text-align: center">
+		<br>
+       <!-- <ons-button (click)="push()">
+          Push Page
+        </ons-button> -->
+  </div>
+  <p style="text-align: center; opacity: 0.6; padding-top: 20px;">
+        Logon using your OSM account
+  </p>
+      
+  <div style="text-align: center"> 
+   <form>
+    <p>
+   
+      <ons-input  id="username"  modifier="underbar" placeholder="Username" float #username (keyup.enter)="validate(username.value,password.value)" (blur)="validate(username.value,password.value)"></ons-input>
+    </p>
+    
+    <p>
+      <ons-input id="password" modifier="underbar" type="password" placeholder="Password" float (keyup.enter)="logon(username.value,password.value)" (keydown.tab)="logon(username.value,password.value)"  #password></ons-input>
+    </p>
+  </form>
+    <p style="margin-top: 30px;">
+      <ons-button *ngIf="validate2(username.value,password.value)==true" (click)="logon(username.value,password.value)">Sign in</ons-button>
+      <ons-button *ngIf="validate2(username.value,password.value)==false" (click)="logon(username.value,password.value)" disabled>Sign in</ons-button>
+
+    </p>
+    <div id="error">{{error_text}}</div>
+   
+    <p>Version&nbsp;{{globals.version}}</p>
+    
+    </div>
+    <ons-modal  id="modal">
+    
+      <ons-icon icon="fa-spinner" spin="true" size="80px"></ons-icon>
+    
+    <p>Logging you on & getting your data</p>
+  </ons-modal>

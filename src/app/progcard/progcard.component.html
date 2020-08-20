@@ -1,0 +1,25 @@
+<ons-toolbar>
+	<div class="left">
+		<ons-back-button>Back</ons-back-button>
+	</div>
+  <div class="center">
+        {{globals.application}}
+      </div>
+	<div class="right menu_sel">
+     
+		<ons-toolbar-button (click)="openMenu()">
+			<ons-icon icon="fa-bars"></ons-icon>
+		</ons-toolbar-button>
+	</div>
+</ons-toolbar>
+
+<div class="content">
+ 
+  <ons-tabbar swipeable>
+  <ons-tab label="Details" icon="fa-eye" active [page]="summarytab"></ons-tab>
+  <ons-tab label="Register" icon="fa-users" [page]="attendancetab"></ons-tab> 
+  <ons-tab label="Groups" icon="fa-list-alt" [page]="answertab"></ons-tab>
+</ons-tabbar>
+.
+  
+</div> 

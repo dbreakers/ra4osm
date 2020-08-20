@@ -1,0 +1,41 @@
+<ons-toolbar>
+      <div class="center">
+        {{globals.application}}
+      </div>
+       <div class="left">
+		<ons-back-button>Back</ons-back-button>
+	</div>
+      <div class="right menu_sel">
+        <ons-toolbar-button (click)="openMenu()">
+          <ons-icon icon="fa-bars"></ons-icon>
+        </ons-toolbar-button>
+      </div>
+    </ons-toolbar>
+    <!---->
+ <ons-fab  position="right bottom" (click)="select_section()">
+        <ons-icon icon="md-check"></ons-icon>
+      </ons-fab>     
+<div class="content">
+      <!--<h2>Your Sections</h2>-->
+      <ons-list-title  *ngIf="section">Select a Section</ons-list-title>
+
+
+      <ons-list>
+        <ons-list-item (click)="push($event, sections)" *ngFor="let sections of section[1]">
+      
+        <span class="left" >
+        <ons-icon *ngIf="localsection==sections.sectionid" icon="fa-check-circle" size="50px" style="color: #00a794;" class="list-item__icon">
+        </ons-icon>
+        <ons-icon *ngIf="localsection!=sections.sectionid" icon="fa-circle" size="50px" style="color: LightGray;" class="list-item__icon">
+        </ons-icon>
+                
+        </span>
+        <span class="list-item__title">{{sections.groupname}}: {{sections.sectionname}}</span>
+        
+        </ons-list-item>
+       
+      </ons-list>
+      
+     
+        
+    </div>

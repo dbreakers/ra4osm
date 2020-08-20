@@ -1,0 +1,72 @@
+.member_initial {
+  display: table-cell;
+  border-radius: 40px;
+  width: 60px;
+  height: 60px;
+  vertical-align: middle;
+  text-align: center;
+  color: white; 
+  background-color: #00a794; 
+  font-size:25px;
+}
+
+.deact {
+  background-color:lightgrey;}
+
+
+.member_box { 
+ display: table;
+  margin: 0 auto;
+  margin-top: 10px;
+}
+
+.member_name {color:black;text-align:center;font-size:10pt;padding:1pt;}
+.member_photo {
+  width:60px;
+  height:60px;
+  border-radius:40px;
+   vertical-align: middle;}
+
+
+
+.member_outer { 
+  display: block;
+  float:left;
+  padding: 10px;
+      width: 60px;
+    height: 80px;
+  }
+
+
+.member_inner {
+display: table-cell;
+float: left;
+}
+
+.notification {
+  position: absolute;
+  margin: -5px;
+  font-size: 10pt;
+  background: #7413dc;
+}
+
+.bottom-bar {
+  padding:10pt;
+}
+
+.menu-button {
+  width: 60px;
+  height: 60px;
+  border-radius: 100%;
+  background-color: blue;
+  color: white;
+}
+
+.switchsec { margin-left: 10px;}
+
+.notification {
+  position: absolute;
+  margin: -15px;
+  font-size: 10pt;
+  background: #7413dc;
+}

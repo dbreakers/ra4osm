@@ -1,0 +1,38 @@
+<ons-toolbar>
+   <div class="center">
+        {{globals.application}}
+      </div>
+	<div class="left">
+		<ons-back-button>Back</ons-back-button>
+	</div>
+	<div class="right menu_sel">
+		<ons-toolbar-button (click)="openMenu()">
+			<ons-icon icon="fa-bars"></ons-icon>
+		</ons-toolbar-button>
+	</div>
+</ons-toolbar>
+<ons-fab style="background-color: #7413dc; color:white;" position="right bottom" (click)="select_term()">
+        <ons-icon icon="md-check"></ons-icon>
+      </ons-fab>
+
+<div class="content">
+	<ons-list-title  *ngIf="section">Select a Term</ons-list-title>
+
+
+      <ons-list>
+        <ons-list-item (click)="push($event, sections, i)" *ngFor="let sections of termscopy;index as i">
+       <span class="left" >
+        <ons-icon *ngIf="localterm==i" icon="fa-check-circle" size="50px" style="color: #00a794;" class="list-item__icon">
+        </ons-icon>
+        <ons-icon *ngIf="localterm!=i" icon="fa-circle" size="50px" style="color: LightGray;" class="list-item__icon">
+        </ons-icon>
+                
+        </span>
+       
+        <span class="list-item__title">{{sections.name}}</span>
+        <span class="list-item__subtitle">{{termdates(sections.startdate,sections.enddate)}}</span>
+        </ons-list-item>
+       
+      </ons-list>
+      
+</div>

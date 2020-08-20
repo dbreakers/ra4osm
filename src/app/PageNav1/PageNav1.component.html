@@ -1,0 +1,29 @@
+ <ons-toolbar>
+      <div class="left">
+        <ons-back-button>Back</ons-back-button>
+      </div>
+      <div class="center">{{ title }}</div>
+      <div class="right">
+        <ons-toolbar-button (click)="openMenu()">
+          <ons-icon icon="md-menu"></ons-icon>
+        </ons-toolbar-button>
+      </div>
+    </ons-toolbar>
+
+    <div class="content">
+      <div style="text-align: center">
+        <h1>Custom Page</h1>
+        <p>
+          <ons-input modifier="underbar" placeholder="Title" float></ons-input>
+        </p>
+        <ons-button (click)="push()">
+          Push Page
+        </ons-button>
+        <ons-button (click)="pop()">
+          Pop Page
+        </ons-button>
+      </div>
+      <p style="text-align: center; opacity: 0.6; padding-top: 20px;">
+        Swipe left to open the menu!
+      </p>
+    </div>

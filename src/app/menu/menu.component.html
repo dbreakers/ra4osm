@@ -1,0 +1,59 @@
+<ons-page>
+<ons-toolbar>
+      <div class="center">
+        {{globals.application}}
+      </div>
+      <div class="right menu_sel">
+        <ons-toolbar-button (click)="openMenu()" class="menu_sel">
+          <ons-icon icon="fa-bars"></ons-icon>
+        </ons-toolbar-button>
+      </div>
+    </ons-toolbar>
+    <ons-bottom-toolbar>
+      <div style="display:flex"><div style="width:40%">Version&nbsp;{{globals.version}}</div><div style="width:60%"><span style="float:right" *ngIf="(!globals.loaded.events&&globals.access.events>0)||(!globals.loaded.progs&&globals.access.progs>0)"><ons-icon icon="fa-compass" spin="true" ></ons-icon> Loading <span *ngIf="!globals.loaded.progs" >Programmes...</span><span *ngIf="globals.loaded.progs&&!globals.loaded.events">Events...</span></span></div></div>
+</ons-bottom-toolbar>
+
+        <div class="content">
+      <div *ngIf="globals.secret!=''">    
+      <h2>Welcome</h2>
+      <p class="switchsec">
+      <b>Current Term:</b> <span *ngIf="globals.current_term!='-1'">{{globals.config[2][globals.mysection][globals.current_term].name}}</span>&nbsp;<ons-icon (click)="loadPage(termselect)" icon="fa-exchange-alt"></ons-icon>
+      </p>
+      <p class="switchsec">
+      <b>Section:</b>  {{globals.sectionname}}&nbsp;<ons-icon icon="fa-exchange-alt" (click)="loadPage(sectionselect)"></ons-icon>    
+      </p>
+      <ons-card *ngIf="globals.access.noaccess">
+        You have no access to this section. Find out more.
+      </ons-card>
+      <ons-card *ngIf="!globals.access.noaccess && (globals.access.events==0||globals.access.progs==0)">
+        Some Items are disabled. Goto External Access in OSM and  add access to OSMR.
+      </ons-card>  
+        
+      <div class="member_outer" (click)="(globals.loaded.events&&globals.access.events>0)&&loadPage(events)" >
+           <div class="member_inner">
+          <div class="member_box"><div class="member_initial"  [class.deact]="globals.access.events==0 " >
+            <ons-icon icon="fa-cube" *ngIf="globals.loaded.events||globals.access.events==0"></ons-icon>
+            <ons-icon icon="fa-compass" spin="true" *ngIf="!globals.loaded.events&&globals.access.events>0" ></ons-icon>
+            </div></div>
+          <div class="member_name">Events</div>
+         </div> 
+      </div>
+      <div class="member_outer" (click)="(globals.loaded.progs&&globals.access.progs>0)&&loadPage(program)">
+           <div class="member_inner">
+          <div class="member_box"><div class="member_initial" [class.deact]="globals.access.progs==0 ">
+          <ons-icon *ngIf="globals.loaded.progs||globals.access.progs==0" icon="fa-cubes"></ons-icon>
+          <ons-icon spin="true" icon="fa-compass" *ngIf="!globals.loaded.progs&&globals.access.progs>0"></ons-icon>
+          </div></div>
+          <div class="member_name">Programme</div>
+         </div> 
+      </div>
+      
+    
+      </div>
+      
+      
+           </div>
+    </ons-page>
+
+    
+   

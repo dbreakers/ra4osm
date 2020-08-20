@@ -1,0 +1,8 @@
+.notifcation.blue { background: #00a794;}
+.notifcation.red { background:  #e22e12;}
+.notifcation.amber { background: #ffe627;}
+.notifcation.green { background: #23a950;}
+.ecount { width: 50px; border-left: solid; border-width: 1px; padding-left: 5px}
+.bot_ecount {font-size: 16px;}
+.top_ecount {font-size: 14px; padding-bottom: 2px;}
+.notification {border-radius: 0px;}
