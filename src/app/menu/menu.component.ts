@@ -175,17 +175,13 @@ export class MenuComponent implements OnInit {
             .subscribe(Progs => this.do_progs(Progs))
         );
       }
-      if (this.globals.access.qm > 0) {
-      fj.push(
-        this.logonService.getQMListData().subscribe(QM => this.do_QM(QM))
-      );
-      }
+       
       forkJoin(fj);
     }
     //  }
 
     // Deal with the scenario where we have access but no data
-    this.access = this.globals.sectiondata[2].apis.find(i => i.apiid == 41);
+    this.access = this.globals.sectiondata[3].apis.find(i => i.apiid == 41);
     if (this.globals.access.progs > 0) {
       if (this.globals.sectiondata[1].items.length == 0) {
         this.globals.loaded.progs = true;
