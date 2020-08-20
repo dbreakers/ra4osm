@@ -8,7 +8,7 @@ export class Globals {
   userid: string = "";
   mysection: string = "3329";
    
-  application: string = "OSM Meeting+";
+  application: string = "RA for OSM";
   proxyURL: string = "https://www.2ndnewhawscouts.org.uk/osmr/osmrelay2.php";
   configread: boolean = false;
   config: any;
