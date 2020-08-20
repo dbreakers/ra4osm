@@ -16,7 +16,7 @@ import { AppComponent } from '../app.component';
 import { MedicalcardComponent } from '../medicalcard/medicalcard.component';
 import { MenuComponent } from '../menu/menu.component';
 import {  DateformatService } from '../dateformatter';
-import { LogonService } from '../logon.service';
+import { NetworkService } from '../network.service';
 import { Globals } from '../globals';
 import * as ons from 'onsenui';
 import {  Sortservice } from '../sort';
@@ -37,7 +37,7 @@ export class TermpickerComponent implements OnInit {
     private globals: Globals,
     private sorting: Sortservice,
     private dateFormat: DateformatService,
-    private logonService: LogonService) { }
+    private networkService: NetworkService) { }
 
   push(event, index, i) {
     this.localterm = i;   
@@ -48,7 +48,7 @@ export class TermpickerComponent implements OnInit {
   this.globals.event = [];
   this.globals.eventA = [];
   this.globals.progs = [];
-  this.logonService.setAPIvalues();
+  this.networkService.setAPIvalues();
    this.globals.loaded.events = false;
     this.globals.loaded.eventsA = false;
     this.globals.loaded.eventsL = false;
@@ -61,10 +61,10 @@ export class TermpickerComponent implements OnInit {
   select_term() {
     this.globals.current_term = this.localterm;
   if (this.globals.current_term!='-1') {
-   this.logonService.getSectionData(this.globals.mysection,this.globals.config[2][this.globals.mysection][this.globals.current_term].termid).subscribe(SectionConfig => this.section_data_return(SectionConfig));
+   this.networkService.getSectionData(this.globals.mysection,this.globals.config[2][this.globals.mysection][this.globals.current_term].termid).subscribe(SectionConfig => this.section_data_return(SectionConfig));
   } else
   {
-    this.logonService.getSectionData(this.globals.mysection,'-1').subscribe(SectionConfig => this.section_data_return(SectionConfig));
+    this.networkService.getSectionData(this.globals.mysection,'-1').subscribe(SectionConfig => this.section_data_return(SectionConfig));
   }
   }
   openMenu() {

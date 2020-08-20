@@ -19,7 +19,7 @@ import { SectionselectComponent} from '../sectionselect/sectionselect.component'
 import { MenuComponent } from '../menu/menu.component';
 import { Globals } from '../globals';
 import * as ons from 'onsenui';
-import { LogonService } from '../logon.service';
+import { NetworkService } from '../network.service';
 import { Security } from '../security';
 
 @Component({
@@ -33,7 +33,7 @@ export class LogonComponent  {
 
   constructor(private _navigator: OnsNavigator, 
               private inj: Injector,
-              private logonService: LogonService, 
+              private networkService: NetworkService, 
               private globals: Globals) { }
 
   push():void {
@@ -53,14 +53,14 @@ find_current_term() {
 
 section_data_return(data) {
   this.globals.sectiondata = data;
-  this.logonService.setAPIvalues();
+  this.networkService.setAPIvalues();
   this._navigator.element.replacePage(MainComponent);
 }
 
 section_API_return(api) {
   let apiv = api[0].apis.find(i => i.apiid == 41);
-  this.logonService.setAPIvalues2(apiv);
-   this.logonService.getSectionData(this.globals.mysection,this.globals.config[2][this.globals.mysection][this.globals.current_term].termid).subscribe(SectionConfig => this.section_data_return(SectionConfig));
+  this.networkService.setAPIvalues2(apiv);
+   this.networkService.getSectionData(this.globals.mysection,this.globals.config[2][this.globals.mysection][this.globals.current_term].termid).subscribe(SectionConfig => this.section_data_return(SectionConfig));
 }
 
 section_config_return(s) {
@@ -93,7 +93,7 @@ section_config_return(s) {
   {
     
   //   this.logonService.getSectionData(this.globals.mysection,this.globals.config[2][this.globals.mysection][this.globals.current_term].termid).subscribe(SectionConfig => this.section_data_return(SectionConfig));
-  this.logonService.getAPIdata(this.globals.mysection).subscribe(SectionConfig => this.section_API_return(SectionConfig));
+  this.networkService.getAPIdata(this.globals.mysection).subscribe(SectionConfig => this.section_API_return(SectionConfig));
 }
 }
   post_logon(api_return : any)
@@ -105,7 +105,7 @@ section_config_return(s) {
     //this.globals.pageload = false;
     //this._navigator.element.replacePage(SectionselectComponent).then(alert("me"));
  
-     this.logonService.getSectionConfig().subscribe(SectionConfig => this.section_config_return(SectionConfig));
+     this.networkService.getSectionConfig().subscribe(SectionConfig => this.section_config_return(SectionConfig));
 
     
     }
@@ -117,7 +117,7 @@ section_config_return(s) {
     if (this.error_text=="")
     {
           modal.show(); 
-       this.logonService.doLogon(username2,password2).subscribe(Security=> this.post_logon(Security));
+       this.networkService.doLogon(username2,password2).subscribe(Security=> this.post_logon(Security));
 
     }
   }

@@ -15,7 +15,7 @@ import {
 
 import { AppComponent } from '../app.component';
 import { MenuComponent } from '../menu/menu.component';
-import { LogonService } from '../logon.service';
+import { NetworkService } from '../network.service';
 import { Globals } from '../globals';
 import {  Sortservice } from '../sort';
 import * as ons from 'onsenui';
@@ -34,7 +34,7 @@ export class SectionselectComponent implements OnInit, OnChanges {
     private inj: Injector,
     private globals: Globals,
        private sorting: Sortservice,
-    private logonService: LogonService) { }
+    private networkService: NetworkService) { }
 
   push(event, index) {
 
@@ -66,7 +66,7 @@ export class SectionselectComponent implements OnInit, OnChanges {
     //alert("heelo");
     this.globals.sectiondata = data;
     this.globals.loaded.section = true;
-      this.logonService.setAPIvalues();
+      this.networkService.setAPIvalues();
       if (this._navigator.element.pages.length>1)
       {
 
@@ -78,8 +78,8 @@ export class SectionselectComponent implements OnInit, OnChanges {
 
   section_api(api,section,term) {
     let apiv = api[0].apis.find(i => i.apiid == 41);
-  this.logonService.setAPIvalues2(apiv);
-    this.logonService.getSectionData(section, term).subscribe(SectionConfig => this.section_data_return(SectionConfig));
+  this.networkService.setAPIvalues2(apiv);
+    this.networkService.getSectionData(section, term).subscribe(SectionConfig => this.section_data_return(SectionConfig));
   }
 
   select_section() {
@@ -100,10 +100,10 @@ export class SectionselectComponent implements OnInit, OnChanges {
     var f = this.globals.config[1].find(obj => obj.sectionid == this.localsection);
     this.globals.sectionname = f.groupname + ":" + f.sectionname;
     if (this.globals.current_term != '-1') {
-     this.logonService.getAPIdata(this.globals.mysection).subscribe(apidata=>this.section_api(apidata,this.globals.mysection, this.globals.config[2][this.globals.mysection][this.globals.current_term].termid)) 
+     this.networkService.getAPIdata(this.globals.mysection).subscribe(apidata=>this.section_api(apidata,this.globals.mysection, this.globals.config[2][this.globals.mysection][this.globals.current_term].termid)) 
     //this.logonService.getSectionData(this.globals.mysection, this.globals.config[2][this.globals.mysection][this.globals.current_term].termid).subscribe(SectionConfig => this.section_data_return(SectionConfig));
     } else {
-      this.logonService.getAPIdata(this.globals.mysection).subscribe(apidata=>this.section_api(apidata,this.globals.mysection, -1) );
+      this.networkService.getAPIdata(this.globals.mysection).subscribe(apidata=>this.section_api(apidata,this.globals.mysection, -1) );
       //this.logonService.getSectionData(this.globals.mysection, '-1').subscribe(SectionConfig => this.section_data_return(SectionConfig));
       }
 
@@ -155,7 +155,7 @@ export class SectionselectComponent implements OnInit, OnChanges {
   ngOnInit() {
 
     if (!this.globals.configread) {
-      this.logonService.getSectionConfig().subscribe(SectionConfig => this.section_config_return(SectionConfig));
+      this.networkService.getSectionConfig().subscribe(SectionConfig => this.section_config_return(SectionConfig));
     } else {
     this.section = this.globals.config;
       this.localsection = this.globals.mysection;

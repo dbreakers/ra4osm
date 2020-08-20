@@ -24,7 +24,7 @@ import { AppComponent } from "../app.component";
 import { SectionselectComponent } from "../sectionselect/sectionselect.component";
  
 import { Globals } from "../globals";
-import { LogonService } from "../logon.service";
+import { NetworkService } from "../network.service";
 import { PhotoURLService } from "../photoUrl";
 import * as ons from "onsenui";
 import { Dropbox } from "dropbox";
@@ -66,7 +66,7 @@ export class MenuComponent implements OnInit {
     private inj: Injector,
     private globals: Globals,
     private _navigator: OnsNavigator,
-    private logonService: LogonService,
+    private networkService: NetworkService,
     private photoURL: PhotoURLService
   ) {}
 
@@ -148,29 +148,29 @@ export class MenuComponent implements OnInit {
       var fj = [];
       if (!this.globals.loaded.events && this.globals.access.events > 0) {
         fj.push(
-          this.logonService
+          this.networkService
             .getEventsData()
             .subscribe(Events => this.do_eventsA(Events))
         );
         fj.push(
-          this.logonService
+          this.networkService
             .getEventsAData()
             .subscribe(Events => this.do_events(Events))
         );
         fj.push(
-          this.logonService
+          this.networkService
             .getEventsSData()
             .subscribe(Events => this.do_eventsS(Events))
         );
         fj.push(
-          this.logonService
+          this.networkService
             .getEventsSSData()
             .subscribe(Events => this.do_eventsSS(Events))
         );
       }
       if (!this.globals.loaded.progs && this.globals.access.progs > 0) {
         fj.push(
-          this.logonService
+          this.networkService
             .getProgsData()
             .subscribe(Progs => this.do_progs(Progs))
         );

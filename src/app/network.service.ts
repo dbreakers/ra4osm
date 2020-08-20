@@ -25,7 +25,7 @@ const httpOptions = {
 @Injectable({
   providedIn: "root"
 })
-export class LogonService {
+export class NetworkService {
   private configUrl = this.globals.proxyURL;
   constructor(private http: HttpClient, private globals: Globals) {}
 
