@@ -331,7 +331,7 @@ let singleObservables = this.globals.sectiondata[3].items.map(event =>
       "?osmpath=ext/events/event/&action=getAttendance&eventid=" +
       event;
     fullURL =
-      fullURL +
+      fullURL + 
       "&sectionid=" +
       this.globals.mysection +
       "&termid=" +
