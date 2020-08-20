@@ -39,7 +39,7 @@ constructor(private globals: Globals ) { }
 
   home = LogonComponent;
   cards = SectionselectComponent;
-  menu = MenuComponent;
+  main = MenuComponent;
   terms = TermpickerComponent;
    
   events = EventsComponent;
