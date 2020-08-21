@@ -14,7 +14,7 @@ import {
 } from 'ngx-onsenui';
 
 import { AppComponent } from '../app.component';
-import { PageNav1Component } from '../PageNav1/PageNav1.component';
+//import { PageNav1Component } from '../PageNav1/PageNav1.component';
 import { SectionselectComponent} from '../sectionselect/sectionselect.component';
 import { MenuComponent } from '../menu/menu.component';
 import { Globals } from '../globals';

@@ -166,6 +166,24 @@ this.setAPIvalues2(apiv);
       "?osmpath=ext/settings/access/&action=getAPIAccess&sectionid=" +
       sectionid; // access
     
+let fullURL7 =
+      this.configUrl +
+      "?osmpath=ext/risk_assessments/&action=getRiskAssessment&section_id=" +
+      sectionid +
+      "&type=programme&associated_id=0"; 
+    if ( this.globals.access.events < 10 ) {
+      fullURL7 = blankingURL;
+    }
+let fullURL8 =
+      this.configUrl +
+      "?osmpath=ext/risk_assessments/&action=getRiskAssessment&section_id=" +
+      sectionid +
+      "&type=generic_event&associated_id=0"; 
+    if ( this.globals.access.events < 10 ) {
+      fullURL7 = blankingURL;
+    }
+
+
     let body = new HttpParams();
     body = body.set("secret", this.globals.secret);
     body = body.set("userid", this.globals.userid);
@@ -185,6 +203,12 @@ this.setAPIvalues2(apiv);
         .pipe(catchError(error => of({ isError: true, error }))),
       this.http
         .post(fullURL6, body, httpOptions)
+        .pipe(catchError(error => of({ isError: true, error }))),
+        this.http
+        .post(fullURL7, body, httpOptions)
+        .pipe(catchError(error => of({ isError: true, error }))),
+        this.http
+        .post(fullURL8, body, httpOptions)
         .pipe(catchError(error => of({ isError: true, error }))),
        
     );
@@ -363,11 +387,11 @@ let singleObservables = this.globals.sectiondata[0].items.map(event =>
   }
 
   //https://www.onlinescoutmanager.co.uk/ext/events/event/?action=getStructureForEvent&sectionid=3320&eventid=23958
-
+//https://www.onlinescoutmanager.co.uk/ext/risk_assessments/?action=getRiskAssessment&section_id=3320&type=event&associated_id=541643
   getEventData(event): Observable<any> {
     let fullURL =
       this.configUrl +
-      "?osmpath=ext/events/event/&action=getStructureForEvent&eventid=" +
+      "?osmpath=ext/risk_assessments/&action=getRiskAssessment&section_id="+this.globals.mysection+"&type=event&associated_id=" +
       event;
     fullURL =
       fullURL +
@@ -386,16 +410,16 @@ let singleObservables = this.globals.sectiondata[0].items.map(event =>
   }
   getEventData2(event) {
     let fullURL =
-      this.configUrl +
-      "?osmpath=ext/events/event/&action=getStructureForEvent&eventid=" +
+     this.configUrl +
+      "?osmpath=ext/risk_assessments/&action=getRiskAssessment&section_id="+this.globals.mysection+"&type=event&associated_id=" +
       event;
-    fullURL =
+   /* fullURL =
       fullURL +
       "&sectionid=" +
       this.globals.mysection +
       "&termid=" +
       this.globals.config[2][this.globals.mysection][this.globals.current_term]
-        .termid;
+        .termid;*/
     let body = new HttpParams();
     body = body.set("secret", this.globals.secret);
     body = body.set("userid", this.globals.userid);
@@ -407,8 +431,9 @@ let singleObservables = this.globals.sectiondata[0].items.map(event =>
 
   getEventsData(): Observable<any> {
     //  let singleObservables = this.globals.sectiondata[3].items.map( event => this.getEventData(event.eventid) )
-
+// RAs
     if (!this.slowhttp) {
+      
       let singleObservables = this.globals.sectiondata[0].items.map(event =>
         this.getEventData(event.eventid)
       );
@@ -419,7 +444,7 @@ let singleObservables = this.globals.sectiondata[0].items.map(event =>
       );
       return from(singleObservables)
         .pipe(concatMap(param => this.f(param)))
-        .pipe(toArray());
+        .pipe(toArray()); 
     }
     //return forkJoin(singleObservables);
   }

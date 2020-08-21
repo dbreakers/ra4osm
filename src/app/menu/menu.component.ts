@@ -87,10 +87,10 @@ export class MenuComponent implements OnInit {
 
   do_events_loaded() {
     if (
+      this.globals.loaded.eventsA /* &
       this.globals.loaded.eventsS &
-      this.globals.loaded.eventsA &
       this.globals.loaded.eventsL &
-      this.globals.loaded.eventsSS
+      this.globals.loaded.eventsSS*/
     ) {
       this.globals.loaded.events = true;
     }
@@ -151,8 +151,8 @@ export class MenuComponent implements OnInit {
           this.networkService
             .getEventsData()
             .subscribe(Events => this.do_eventsA(Events))
-        );
-        fj.push(
+        ); //
+     /*   fj.push(
           this.networkService
             .getEventsAData()
             .subscribe(Events => this.do_events(Events))
@@ -166,7 +166,7 @@ export class MenuComponent implements OnInit {
           this.networkService
             .getEventsSSData()
             .subscribe(Events => this.do_eventsSS(Events))
-        );
+        ); */
       }
       if (!this.globals.loaded.progs && this.globals.access.progs > 0) {
         fj.push(

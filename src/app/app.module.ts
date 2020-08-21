@@ -23,7 +23,7 @@ import { LogonComponent } from './logon/logon.component';
 //import { RegisterComponent } from './register/register.component';
 import { ProgcardComponent } from './progcard/progcard.component';
 import { ProgrammeComponent } from './programme/programme.component';
-import { PageNav1Component } from './PageNav1/PageNav1.component';
+//import { PageNav1Component } from './PageNav1/PageNav1.component';
 //import { ScoutcardComponent } from './scoutcard/scoutcard.component';
 import { TermpickerComponent } from './termpicker/termpicker.component';
 //import { MedicalcardComponent } from './medicalcard/medicalcard.component';
@@ -53,8 +53,8 @@ import { Globals } from './globals';
   imports: [OnsenModule, HttpClientModule
   //,ServiceWorkerModule.register('@angular/service-worker/ngsw-worker.js')
   ],
-  declarations: [AppComponent, LogonComponent, PageNav1Component, SectionselectComponent, MenuComponent, TermpickerComponent, ProgcardComponent, EventsComponent, ProgrammeComponent ],
-  entryComponents: [LogonComponent, PageNav1Component, ProgrammeComponent, SectionselectComponent, MenuComponent,   ProgcardComponent,   TermpickerComponent, EventsComponent],
+  declarations: [AppComponent, LogonComponent, SectionselectComponent, MenuComponent, TermpickerComponent, ProgcardComponent, EventsComponent, ProgrammeComponent ],
+  entryComponents: [LogonComponent,   ProgrammeComponent, SectionselectComponent, MenuComponent,   ProgcardComponent,   TermpickerComponent, EventsComponent],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [ Globals ]
