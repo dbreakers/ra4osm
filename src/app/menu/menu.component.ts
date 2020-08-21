@@ -92,7 +92,7 @@ export class MenuComponent implements OnInit {
       this.globals.loaded.eventsL &
       this.globals.loaded.eventsSS*/
     ) {
-      this.globals.loaded.events = true;
+      this.globals.loaded.events = true; 
     }
   }
 
@@ -181,10 +181,10 @@ export class MenuComponent implements OnInit {
     //  }
 
     // Deal with the scenario where we have access but no data
-    this.access = this.globals.sectiondata[3].apis.find(i => i.apiid == 41);
+    this.access = this.globals.sectiondata[2].apis.find(i => i.apiid == 41);
     if (this.globals.access.progs > 0) {
       if (this.globals.sectiondata[1].items.length == 0) {
-        this.globals.loaded.progs = true;
+        this.globals.loaded.progs = true; 
       }
     }
     if (this.globals.access.events > 0) {

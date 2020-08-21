@@ -302,7 +302,7 @@ export class EventsComponent implements OnInit {
 
 
   ngOnInit() {
-    this.event_generate_summary();
+   this.event_generate_summary();
     this.list.sort(
       this.sorting.compareValuesArray(["startdate"], "desc")
     );

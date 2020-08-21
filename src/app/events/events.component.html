@@ -29,28 +29,7 @@
           </span>
         <span class="list-item__subtitle">{{event.dates}}</span>
         <span class="right" >
-          <div><div>  
-           <ons-icon icon="fa-lock-open" style="color: limegreen;" *ngIf="event.signup >= 0" ></ons-icon>  
-         <ons-icon icon="fa-lock" style="color: grey;" *ngIf="event.signup <0" ></ons-icon>&nbsp;</div>
-         <div *ngIf="event.shared" style="padding-top:2px;"><ons-icon icon="fa-share-alt" style="color: grey"></ons-icon></div><div *ngIf="event.sharee" style="padding-top:2px;"><ons-icon icon="fa-link" style="color: grey"></ons-icon></div></div>
-         <div class="ecount" *ngIf="event.eventlimitldr==0" >
-         <!--Total does not include LEaders-->
-         <div class="top_ecount">
-           <span class="notification {{event.class}}" >{{event.count}}<span *ngIf="event.eventlimit>0">/{{event.eventlimit}}</span></span>
-         </div>
-         <div class="bot_ecount">
-           &amp;&nbsp;{{event.countL}}L
-         </div>    
-         </div>  
-         <div class="ecount" *ngIf="event.eventlimitldr==1">
-         <!--Total does include LEaders-->
-         <div class="top_ecount">
-           <span class="notification event.class}}">{{event.count}}+{{event.countL}}L</span>
-         </div>
-         <div class="bot_ecount">
-           of {{event.eventlimit}}
-         </div>    
-         </div>  
+         
      <!--     &nbsp;<span class="notification {{event_class(event.eventid)}}">{{event_option(event.eventid,"Yes")}}<span *ngIf="event_limit(event.eventid)>0">/{{event.attendancelimit}}</span></span> -->
         </span>
 </ons-list-item>
