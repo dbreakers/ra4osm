@@ -96,17 +96,21 @@ export class MenuComponent implements OnInit {
     }
   }
 
+  do_eventsA(e) {
+    this.globals.eventA = e;
+    this.globals.loaded.eventsA = true;
+    this.do_events_loaded();
+  }
+
+
+
+/*
   do_events(e) {
     this.globals.event = e;
     this.globals.loaded.eventsL = true;
     this.do_events_loaded();
   }
 
-  do_eventsA(e) {
-    this.globals.eventA = e;
-    this.globals.loaded.eventsA = true;
-    this.do_events_loaded();
-  }
 
   do_eventsS(e) {
     this.globals.eventS = e;
@@ -119,7 +123,7 @@ export class MenuComponent implements OnInit {
     this.globals.loaded.eventsSS = true;
     this.do_events_loaded();
   }
-
+*/
   do_progs(p) {
     this.globals.progs = p;
     // this.globals.loadprogs=true;

@@ -213,181 +213,9 @@ let fullURL8 =
        
     );
   }
-// https://www.onlinescoutmanager.co.uk/ext/events/event/sharing/?action=getStatus&eventid=569888&sectionid=26965&_v=2
 
-getEventSSData(event): Observable<any> {
-    let fullURL =
-      this.configUrl +
-          "?osmpath=ext/events/event/sharing/&action=getStatus&eventid=" +
-      event;
-    fullURL =
-      fullURL +
-      "&sectionid=" +
-      this.globals.mysection +
-      "&_v2=2"; 
-      
-    //this.globals.current_term;
-    let body = new HttpParams();
-    body = body.set("secret", this.globals.secret);
-    body = body.set("userid", this.globals.userid);
-    return this.http
-      .post(fullURL, body, httpOptions)
-      .pipe(tap(d=> d.event = event),catchError(error => of("error")));
-  }
-  
 
-  getEventSSData2(event) {
-    let fullURL =
-      this.configUrl +
-      "?osmpath=ext/events/event/sharing/&action=getStatus&eventid=" +
-      event;
-    fullURL =
-      fullURL +
-      "&sectionid=" +
-      this.globals.mysection +
-     "&_v2=2";
-    //this.globals.current_term;
-    let body = new HttpParams();
-    body = body.set("secret", this.globals.secret);
-    body = body.set("userid", this.globals.userid);
-    return this.http
-      .post(fullURL, body, httpOptions)
-      .pipe(tap(d=> d.event = event), catchError(error => of({ isError: true, error })));
-  } 
 
-  getEventsSSData(): Observable<any> {
-    if (!this.slowhttp) {
-      let singleObservables = (this.globals.sectiondata[0].items.map(event =>
-        this.getEventSSData(event.eventid))
-              );
-      return forkJoin(singleObservables);
-    } else {
-let singleObservables = this.globals.sectiondata[0].items.map(event =>
-        this.getEventSSData2(event.eventid)
-      );
-      
-      return from(singleObservables)
-        .pipe(concatMap(param => this.f(param)))
-        .pipe(toArray());
-    }
-  }
-
-  getEventSData(event): Observable<any> {
-    let fullURL =
-      this.configUrl +
-          "?osmpath=ext/events/event/sharing/&action=getAttendance&eventid=" +
-      event;
-    fullURL =
-      fullURL +
-      "&sectionid=" +
-      this.globals.mysection +
-      "&_v2=2"; 
-      
-    //this.globals.current_term;
-    let body = new HttpParams();
-    body = body.set("secret", this.globals.secret);
-    body = body.set("userid", this.globals.userid);
-    return this.http
-      .post(fullURL, body, httpOptions)
-      .pipe(tap(d=> d.event = event),catchError(error => of("error")));
-  }
-
-  getEventSData2(event) {
-    let fullURL =
-      this.configUrl +
-      "?osmpath=ext/events/event/sharing/&action=getAttendance&eventid=" +
-      event;
-    fullURL =
-      fullURL +
-      "&sectionid=" +
-      this.globals.mysection +
-     "&_v2=2";
-    //this.globals.current_term;
-    let body = new HttpParams();
-    body = body.set("secret", this.globals.secret);
-    body = body.set("userid", this.globals.userid);
-    return this.http
-      .post(fullURL, body, httpOptions)
-      .pipe(tap(d=> d.event = event), catchError(error => of({ isError: true, error })));
-  } 
-
-  getEventsSData(): Observable<any> {
-    if (!this.slowhttp) {
-      let singleObservables = (this.globals.sectiondata[0].items.map(event =>
-        this.getEventSData(event.eventid))
-              );
-      return forkJoin(singleObservables);
-    } else {
-let singleObservables = this.globals.sectiondata[0].items.map(event =>
-        this.getEventSData2(event.eventid)
-      );
-      
-      return from(singleObservables)
-        .pipe(concatMap(param => this.f(param)))
-        .pipe(toArray());
-    }
-  }
-
-  getEventAData(event): Observable<any> {
-    let fullURL =
-      this.configUrl +
-      "?osmpath=ext/events/event/&action=getAttendance&eventid=" +
-      event;
-    fullURL =
-      fullURL +
-      "&sectionid=" +
-      this.globals.mysection +
-      "&termid=" +
-      this.globals.config[2][this.globals.mysection][this.globals.current_term]
-        .termid;
-    //this.globals.current_term;
-    let body = new HttpParams();
-    body = body.set("secret", this.globals.secret);
-    body = body.set("userid", this.globals.userid);
-    return this.http
-      .post(fullURL, body, httpOptions)
-      .pipe(catchError(error => of("error")));
-  }
-
-  getEventAData2(event) {
-    let fullURL =
-      this.configUrl +
-      "?osmpath=ext/events/event/&action=getAttendance&eventid=" +
-      event;
-    fullURL =
-      fullURL + 
-      "&sectionid=" +
-      this.globals.mysection +
-      "&termid=" +
-      this.globals.config[2][this.globals.mysection][this.globals.current_term]
-        .termid;
-    //this.globals.current_term;
-    let body = new HttpParams();
-    body = body.set("secret", this.globals.secret);
-    body = body.set("userid", this.globals.userid);
-    return this.http
-      .post(fullURL, body, httpOptions)
-      .pipe(catchError(error => of("error")));
-  }
-
-  getEventsAData(): Observable<any> {
-    if (!this.slowhttp) {
-      let singleObservables = this.globals.sectiondata[0].items.map(event =>
-        this.getEventAData(event.eventid)
-      );
-      return forkJoin(singleObservables);
-    } else {
-      let singleObservables = this.globals.sectiondata[0].items.map(event =>
-        this.getEventAData2(event.eventid)
-      );
-      return from(singleObservables)
-        .pipe(concatMap(param => this.f(param)))
-        .pipe(toArray());
-    }
-  }
-
-  //https://www.onlinescoutmanager.co.uk/ext/events/event/?action=getStructureForEvent&sectionid=3320&eventid=23958
-//https://www.onlinescoutmanager.co.uk/ext/risk_assessments/?action=getRiskAssessment&section_id=3320&type=event&associated_id=541643
   getEventData(event): Observable<any> {
     let fullURL =
       this.configUrl +
@@ -406,7 +234,7 @@ let singleObservables = this.globals.sectiondata[0].items.map(event =>
 
     return this.http
       .post(fullURL, body, httpOptions)
-      .pipe(catchError(error => of(error)));
+      .pipe(tap(d=> d.event = event), catchError(error => of({ isError: true, error })))
   }
   getEventData2(event) {
     let fullURL =
@@ -448,48 +276,34 @@ let singleObservables = this.globals.sectiondata[0].items.map(event =>
     }
     //return forkJoin(singleObservables);
   }
-  //ext/programme/?action=getProgramme&eveningid=4327864&sectionid=3320&termid=349161
-
+  //https://www.onlinescoutmanager.co.uk/ext/risk_assessments/?action=getRiskAssessment&section_id=3320&type=meeting&associated_id=5015897
   getProgData(prog): Observable<any> {
     let fullURL =
       this.configUrl +
-      "?osmpath=ext/programme/&action=getProgramme&eveningid=" +
+      "?osmpath=ext/risk_assessments/&action=getRiskAssessment&section_id="+this.globals.mysection+"&type=meeting&associated_id=" +
       prog;
-    fullURL =
-      fullURL +
-      "&sectionid=" +
-      this.globals.mysection +
-      "&termid=" +
-      this.globals.config[2][this.globals.mysection][this.globals.current_term]
-        .termid;
+   
     let body = new HttpParams();
     body = body.set("secret", this.globals.secret);
     body = body.set("userid", this.globals.userid);
     // return this.http.post(fullURL,body,httpOptions).pipe(catchError(error => of(error)))
     return this.http
       .post(fullURL, body, httpOptions)
-      .pipe(catchError(error => of({ isError: true, error })));
+      .pipe(tap(d=> d.prog = prog), catchError(error => of({ isError: true, error })))
   }
 
   getProgData2(prog) {
-    let fullURL =
+      let fullURL =
       this.configUrl +
-      "?osmpath=ext/programme/&action=getProgramme&eveningid=" +
-      prog;
-    fullURL =
-      fullURL +
-      "&sectionid=" +
-      this.globals.mysection +
-      "&termid=" +
-      this.globals.config[2][this.globals.mysection][this.globals.current_term]
-        .termid;
+      "?osmpath=ext/risk_assessments/&action=getRiskAssessment&section_id="+this.globals.mysection+"&type=meeting&associated_id=" +
+      prog; 
     let body = new HttpParams();
     body = body.set("secret", this.globals.secret);
     body = body.set("userid", this.globals.userid);
     // return this.http.post(fullURL,body,httpOptions).pipe(catchError(error => of(error)))
     return this.http
       .post(fullURL, body, httpOptions)
-      .pipe(catchError(error => of({ isError: true, error })));
+      .pipe(tap(d=> d.prog = prog), catchError(error => of({ isError: true, error })))
   }
 
   f(x) {
