@@ -7,16 +7,12 @@ export class Globals {
   secret: string = "";
   userid: string = "";
   mysection: string = "3329";
-   
   application: string = "RA for OSM";
   proxyURL: string = "https://www.2ndnewhawscouts.org.uk/osmr/osmrelay2.php";
   configread: boolean = false;
   config: any;
   sectiondata: any;
-  event: Array<any>= [];
   eventA:  Array<any> = [];
-  eventS:  Array<any> = [];
-  eventSS:  Array<any> = [];
   progs:  Array<any> = [];
   qmlist:  Array<any> = [];
  // eventsection: string = "";
